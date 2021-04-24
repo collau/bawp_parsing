@@ -15,6 +15,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 public class MainActivity extends AppCompatActivity {
@@ -35,6 +36,16 @@ public class MainActivity extends AppCompatActivity {
             public void onResponse(JSONArray response) {
                 Log.d("JSON", response.toString());
 
+                try {
+                    for (int i = 0; i < response.length(); i++)
+                    {
+                        JSONObject jsonObject = response.getJSONObject(i);
+                        Log.d("JSONObject", "onCreate: " + jsonObject.getString("title"));
+                    }
+                } catch (JSONException e) {
+                    Log.e("MainActivity", "Unable to parse JSON");
+                    e.printStackTrace();
+                }
             }
         }, new Response.ErrorListener() {
             @Override
