@@ -33,7 +33,8 @@ public class MainActivity extends AppCompatActivity {
 
         final TextView textView = findViewById(R.id.textView);
 
-        queue = Volley.newRequestQueue(this);
+        // Get just one RequestQueue
+        queue = MySingleton.getInstance(this.getApplicationContext()).getRequestQueue();
 
 //        getJSONArrayRequest();
 
